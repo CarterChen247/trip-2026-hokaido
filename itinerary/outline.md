@@ -1,6 +1,6 @@
 # 行程大綱（草稿版）
 
-從 [interests/carter.md](../interests/carter.md)、[interests/rola.md](../interests/rola.md) 和 [logistics.md](logistics.md) 整理出的天數分配，還沒排時間細節。細節排定後搬到 [detailed.md](detailed.md)。
+從 [interests/carter.md](../interests/carter.md)、[interests/rola.md](../interests/rola.md)、[interests/shared.md](../interests/shared.md) 和 [logistics.md](logistics.md) 整理出的天數分配，還沒排時間細節。細節排定後搬到 [detailed.md](detailed.md)。之前排過的方案存檔在 [old-plans.md](old-plans.md)，可以參考。
 
 | Day | 日期 | 地區 | 主要地點 | 住宿 | 備註 |
 |-----|------|------|----------|------|------|
