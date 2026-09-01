@@ -32,3 +32,11 @@ Each file links to its neighbors in the pipeline — follow those links to see w
 ## Editing itinerary/detailed.md
 
 Each day is a `## Day N - YYYY/MM/DD (weekday)` heading followed by a `住宿：` line and a table with columns `時間 | 地點 | 內容 / 備註 | 交通方式`. Keep this structure consistent across days — the webpage generation step parses it directly.
+
+## web/index.html conventions
+
+Currently a horizontally-scrollable day-board: one column per day (uniform header style, no per-day color), grouped rows for 早/午/晚/TBD. Each item card is color-coded by activity type using this fixed 6-category taxonomy (with a legend on the page) — reuse it rather than inventing new categories:
+
+- 交通 (transport), 美食 (food), 購物 (shopping), 景點 (sightseeing), 住宿 (lodging), 活動 (activity)
+
+Category colors come from the `dataviz` skill's validated categorical palette (slots 1–6, in that fixed order) — reuse the same hex values and re-run `scripts/validate_palette.js` if the set of categories ever changes.

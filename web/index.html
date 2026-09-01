@@ -13,14 +13,14 @@
     --border: #e5e2db;
     --accent: #2f6f4f;
     --accent-soft: #eaf3ee;
-    --d1: #2a78d6;
-    --d2: #eb6834;
-    --d3: #1baf7a;
-    --d4: #eda100;
-    --d5: #e87ba4;
-    --d6: #008300;
-    --d7: #4a3aa7;
-    --d8: #e34948;
+    --header-bg: #ffffff;
+    --header-border: #d8d5cc;
+    --cat-transport: #2a78d6;
+    --cat-food: #eb6834;
+    --cat-shopping: #1baf7a;
+    --cat-sight: #eda100;
+    --cat-lodging: #e87ba4;
+    --cat-activity: #008300;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -31,14 +31,14 @@
       --border: #30343a;
       --accent: #6fbf94;
       --accent-soft: #223229;
-      --d1: #3987e5;
-      --d2: #d95926;
-      --d3: #199e70;
-      --d4: #c98500;
-      --d5: #d55181;
-      --d6: #008300;
-      --d7: #9085e9;
-      --d8: #e66767;
+      --header-bg: #23262b;
+      --header-border: #3a3e45;
+      --cat-transport: #3987e5;
+      --cat-food: #d95926;
+      --cat-shopping: #199e70;
+      --cat-sight: #c98500;
+      --cat-lodging: #d55181;
+      --cat-activity: #008300;
     }
   }
   * { box-sizing: border-box; }
@@ -98,6 +98,27 @@
   }
   .info-line span:first-child { color: var(--muted); }
 
+  /* legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    padding: 0.7rem 0.9rem;
+    margin-bottom: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .legend .dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+  }
+
   /* board */
   .board-scroll {
     overflow-x: auto;
@@ -121,24 +142,28 @@
     scroll-snap-align: start;
   }
   .day-badge {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 0.4rem;
     padding: 0.32rem 0.6rem;
     border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.82rem;
-    color: #fff;
+    background: var(--header-bg);
+    border: 1px solid var(--header-border);
     width: 100%;
   }
-  .day-badge.ink-dark { color: #141414; }
-  .day-badge.ink-dark-on-dark { color: #fff; }
-  @media (prefers-color-scheme: dark) {
-    .day-badge.ink-dark-on-dark { color: #141414; }
+  .day-badge .day-num {
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--text);
+  }
+  .day-badge .day-date {
+    font-size: 0.74rem;
+    color: var(--muted);
   }
   .day-badge .count {
     margin-left: auto;
-    background: rgba(255,255,255,0.28);
+    background: var(--accent-soft);
+    color: var(--accent);
     border-radius: 6px;
     padding: 0.05rem 0.42rem;
     font-size: 0.72rem;
@@ -177,10 +202,17 @@
   .item-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
     border-radius: 8px;
     padding: 0.5rem 0.6rem;
     font-size: 0.83rem;
   }
+  .item-card.cat-transport { border-left-color: var(--cat-transport); }
+  .item-card.cat-food { border-left-color: var(--cat-food); }
+  .item-card.cat-shopping { border-left-color: var(--cat-shopping); }
+  .item-card.cat-sight { border-left-color: var(--cat-sight); }
+  .item-card.cat-lodging { border-left-color: var(--cat-lodging); }
+  .item-card.cat-activity { border-left-color: var(--cat-activity); }
   .item-card .sub {
     color: var(--muted);
     font-size: 0.72rem;
@@ -223,30 +255,39 @@
     </section>
   </div>
 
+  <div class="legend">
+    <span><span class="dot" style="background:var(--cat-transport)"></span>交通</span>
+    <span><span class="dot" style="background:var(--cat-food)"></span>美食</span>
+    <span><span class="dot" style="background:var(--cat-shopping)"></span>購物</span>
+    <span><span class="dot" style="background:var(--cat-sight)"></span>景點</span>
+    <span><span class="dot" style="background:var(--cat-lodging)"></span>住宿</span>
+    <span><span class="dot" style="background:var(--cat-activity)"></span>活動</span>
+  </div>
+
   <div class="board-scroll">
     <div class="board">
       <!-- day headers -->
-      <div class="day-header"><span class="day-badge ink-dark" style="background:var(--d1)">D1 (12/17 四)<span class="count">4</span></span><div class="day-theme">薄野</div></div>
-      <div class="day-header"><span class="day-badge ink-dark" style="background:var(--d2)">D2 (12/18 五)<span class="count">4</span></span><div class="day-theme">札幌逛街</div></div>
-      <div class="day-header"><span class="day-badge ink-dark" style="background:var(--d3)">D3 (12/19 六)<span class="count">1</span></span><div class="day-theme">小樽</div></div>
-      <div class="day-header"><span class="day-badge ink-dark" style="background:var(--d4)">D4 (12/20 日)<span class="count">3</span></span><div class="day-theme">北海道神宮</div></div>
-      <div class="day-header"><span class="day-badge ink-dark" style="background:var(--d5)">D5 (12/21 一)<span class="count">0</span></span><div class="day-theme">旭川・美瑛</div></div>
-      <div class="day-header"><span class="day-badge" style="background:var(--d6)">D6 (12/22 二)<span class="count">0</span></span><div class="day-theme">札幌</div></div>
-      <div class="day-header"><span class="day-badge ink-dark-on-dark" style="background:var(--d7)">D7 (12/23 三)<span class="count">0</span></span><div class="day-theme">札幌</div></div>
-      <div class="day-header"><span class="day-badge ink-dark" style="background:var(--d8)">D8 (12/24 四)<span class="count">2</span></span><div class="day-theme">回程</div></div>
+      <div class="day-header"><span class="day-badge"><span class="day-num">D1</span><span class="day-date">12/17 四</span><span class="count">4</span></span><div class="day-theme">薄野</div></div>
+      <div class="day-header"><span class="day-badge"><span class="day-num">D2</span><span class="day-date">12/18 五</span><span class="count">4</span></span><div class="day-theme">札幌逛街</div></div>
+      <div class="day-header"><span class="day-badge"><span class="day-num">D3</span><span class="day-date">12/19 六</span><span class="count">1</span></span><div class="day-theme">小樽</div></div>
+      <div class="day-header"><span class="day-badge"><span class="day-num">D4</span><span class="day-date">12/20 日</span><span class="count">3</span></span><div class="day-theme">北海道神宮</div></div>
+      <div class="day-header"><span class="day-badge"><span class="day-num">D5</span><span class="day-date">12/21 一</span><span class="count">0</span></span><div class="day-theme">旭川・美瑛</div></div>
+      <div class="day-header"><span class="day-badge"><span class="day-num">D6</span><span class="day-date">12/22 二</span><span class="count">0</span></span><div class="day-theme">札幌</div></div>
+      <div class="day-header"><span class="day-badge"><span class="day-num">D7</span><span class="day-date">12/23 三</span><span class="count">0</span></span><div class="day-theme">札幌</div></div>
+      <div class="day-header"><span class="day-badge"><span class="day-num">D8</span><span class="day-date">12/24 四</span><span class="count">2</span></span><div class="day-theme">回程</div></div>
 
       <!-- 早 -->
       <div class="group-label"><span>▾</span><span class="chip">早</span></div>
       <div class="cell">
-        <div class="item-card">🚌 台灣時間 6:00 前往機場</div>
-        <div class="item-card">🛫 搭機<div class="sub">TPE 09:30 → CTS 14:05</div></div>
+        <div class="item-card cat-transport">🚌 台灣時間 6:00 前往機場</div>
+        <div class="item-card cat-transport">🛫 搭機<div class="sub">TPE 09:30 → CTS 14:05</div></div>
       </div>
       <div class="cell">
-        <div class="item-card">🏫 北海道大學／北海道農學校<div class="sub">擇一，待選</div></div>
+        <div class="item-card cat-sight">🏫 北海道大學／北海道農學校<div class="sub">擇一，待選</div></div>
       </div>
       <div class="cell"><div class="empty-slot">尚未安排</div></div>
       <div class="cell">
-        <div class="item-card">🌳 大通公園</div>
+        <div class="item-card cat-sight">🌳 大通公園</div>
       </div>
       <div class="cell"><div class="empty-slot">尚未安排</div></div>
       <div class="cell"><div class="empty-slot">尚未安排</div></div>
@@ -256,33 +297,33 @@
       <!-- 午 -->
       <div class="group-label"><span>▾</span><span class="chip">午</span></div>
       <div class="cell">
-        <div class="item-card">🏨 抵達後前往飯店<div class="sub">15:00 後 check-in</div></div>
+        <div class="item-card cat-lodging">🏨 抵達後前往飯店<div class="sub">15:00 後 check-in</div></div>
       </div>
       <div class="cell">
-        <div class="item-card">🛍️ Stellaplace 逛街</div>
-        <div class="item-card">🛍️ apia lowrys farm</div>
+        <div class="item-card cat-shopping">🛍️ Stellaplace 逛街</div>
+        <div class="item-card cat-shopping">🛍️ apia lowrys farm</div>
       </div>
       <div class="cell">
-        <div class="item-card">🚋 小樽<div class="sub">細節待排</div></div>
+        <div class="item-card cat-sight">🚋 小樽<div class="sub">細節待排</div></div>
       </div>
       <div class="cell">
-        <div class="item-card">⛩️ 北海道神宮<div class="sub">1–2 hr</div></div>
+        <div class="item-card cat-sight">⛩️ 北海道神宮<div class="sub">1–2 hr</div></div>
       </div>
       <div class="cell"><div class="empty-slot">尚未安排</div></div>
       <div class="cell"><div class="empty-slot">尚未安排</div></div>
       <div class="cell"><div class="empty-slot">尚未安排</div></div>
       <div class="cell">
-        <div class="item-card">🧳 Check-out<div class="sub">11:00</div></div>
+        <div class="item-card cat-lodging">🧳 Check-out<div class="sub">11:00</div></div>
       </div>
 
       <!-- 晚 -->
       <div class="group-label"><span>▾</span><span class="chip">晚</span></div>
       <div class="cell">
-        <div class="item-card">🧢 狸小路商店街補裝備</div>
-        <div class="item-card">🍽️ 貍小路吃飯</div>
+        <div class="item-card cat-shopping">🧢 狸小路商店街補裝備</div>
+        <div class="item-card cat-food">🍽️ 貍小路吃飯</div>
       </div>
       <div class="cell">
-        <div class="item-card">🏮 貍小路商店街</div>
+        <div class="item-card cat-shopping">🏮 貍小路商店街</div>
       </div>
       <div class="cell"><div class="empty-slot">尚未安排</div></div>
       <div class="cell">
@@ -292,13 +333,13 @@
       <div class="cell"><div class="empty-slot">尚未安排</div></div>
       <div class="cell"><div class="empty-slot">尚未安排</div></div>
       <div class="cell">
-        <div class="item-card">🛫 搭機回程<div class="sub">CTS 15:20 → TPE 19:05</div></div>
+        <div class="item-card cat-transport">🛫 搭機回程<div class="sub">CTS 15:20 → TPE 19:05</div></div>
       </div>
 
       <!-- TBD -->
       <div class="group-label"><span>▾</span><span class="chip">TBD</span></div>
       <div class="cell">
-        <div class="item-card">🛍️ 逛街候補<div class="sub">StellarPlace、狸小路 Parco、札幌工廠</div></div>
+        <div class="item-card cat-shopping">🛍️ 逛街候補<div class="sub">StellarPlace、狸小路 Parco、札幌工廠</div></div>
       </div>
       <div class="cell"><div class="empty-slot">尚未安排</div></div>
       <div class="cell"><div class="empty-slot">尚未安排</div></div>
