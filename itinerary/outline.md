@@ -4,10 +4,10 @@
 
 | Day | 日期 | 地區 | 主要地點 | 住宿 | 備註 |
 |-----|------|------|----------|------|------|
-| 1 | 2026/12/17 (四) | 札幌 | | Sapporo Stream Hotel | 中午抵達 CTS，15:00 後可 check-in |
-| 2 | 2026/12/18 (五) | 札幌 | | Sapporo Stream Hotel | |
-| 3 | 2026/12/19 (六) | 札幌 | | Sapporo Stream Hotel | |
-| 4 | 2026/12/20 (日) | 札幌 | | Sapporo Stream Hotel | |
+| 1 | 2026/12/17 (四) | 札幌（薄野） | 前往飯店 → 狸小路商店街補裝備 → 貍小路吃飯 | Sapporo Stream Hotel | 中午抵達 CTS，15:00 後可 check-in；逛街候補：StellarPlace、狸小路 Parco、札幌工廠 |
+| 2 | 2026/12/18 (五) | 札幌 | 早：北海道大學／北海道農學校（擇一，待選）→ 中：Stellaplace 逛街、apia lowrys farm → 晚：貍小路商店街 | Sapporo Stream Hotel | |
+| 3 | 2026/12/19 (六) | 小樽 | 小樽（細節待排） | Sapporo Stream Hotel | |
+| 4 | 2026/12/20 (日) | 札幌 | 早：大通公園 → 中：北海道神宮（1-2hr）→ 晚：待定 | Sapporo Stream Hotel | 瀧野鈴蘭丘陵公園（雪胎隧道）還沒排進哪一天 |
 | 5 | 2026/12/21 (一) | 札幌 | | Sapporo Stream Hotel | |
 | 6 | 2026/12/22 (二) | 札幌 | | Sapporo Stream Hotel | |
 | 7 | 2026/12/23 (三) | 札幌 | | Sapporo Stream Hotel | |
