@@ -1,0 +1,1 @@
+# trip-2026-hokaido
