@@ -10,6 +10,7 @@ This repo plans Carter and Rola's December 2026 trip to Hokkaido. It has no buil
 
 ```
 interests/carter.md, interests/rola.md   individual lists of places each person wants to go, with notes
+interests/shared.md                      places both Carter and Rola want to go
         │
         ▼
 itinerary/logistics.md                   fixed constraints: dates, flights, lodging, transport (not places-of-interest)
