@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>北海道 2026/12 地點地圖</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --card-bg: #ffffff;
+    --text: #1f2328;
+    --muted: #6b7280;
+    --border: #e5e2db;
+    --accent: #2f6f4f;
+    --accent-soft: #eaf3ee;
+    --cat-shopping: #1baf7a;
+    --cat-sight: #eda100;
+    --cat-lodging: #e87ba4;
+    --cat-activity: #008300;
+    --cat-unresolved: #9a978d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16181c;
+      --card-bg: #1f2227;
+      --text: #eceef0;
+      --muted: #9aa1a8;
+      --border: #30343a;
+      --accent: #6fbf94;
+      --accent-soft: #223229;
+      --cat-shopping: #199e70;
+      --cat-sight: #c98500;
+      --cat-lodging: #d55181;
+      --cat-activity: #008300;
+      --cat-unresolved: #6f6c62;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Segoe UI", sans-serif;
+    line-height: 1.5;
+  }
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.25rem 1rem 0;
+  }
+  header.hero {
+    padding: 0.5rem 0.25rem 1.1rem;
+    text-align: center;
+  }
+  header.hero h1 { margin: 0 0 0.25rem; font-size: 1.35rem; }
+  header.hero p { margin: 0; color: var(--muted); font-size: 0.86rem; }
+  .draft-badge {
+    display: inline-block;
+    margin-top: 0.55rem;
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    padding: 0.7rem 0.9rem;
+    margin-bottom: 0.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .legend .dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+  }
+  #map {
+    flex: 1 1 auto;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    min-height: 420px;
+    border-top: 1px solid var(--border);
+    touch-action: none;
+  }
+  .leaflet-popup-content-wrapper {
+    background: var(--card-bg);
+    color: var(--text);
+    border-radius: 8px;
+  }
+  .leaflet-popup-tip { background: var(--card-bg); }
+  .popup-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .popup-meta { font-size: 0.76rem; color: var(--muted); }
+  .popup-note { font-size: 0.78rem; margin-top: 0.3rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>北海道 2026/12 地點地圖</h1>
+    <p>Carter &amp; Rola</p>
+    <span class="draft-badge">草稿版・資料來源：interests/shared.md、itinerary/logistics.md</span>
+    <p style="margin-top:0.5rem;"><a href="index.html" style="color:var(--accent);">← 看行程看板</a></p>
+  </header>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--cat-sight)"></span>景點</span>
+    <span><span class="dot" style="background:var(--cat-activity)"></span>活動</span>
+    <span><span class="dot" style="background:var(--cat-shopping)"></span>購物</span>
+    <span><span class="dot" style="background:var(--cat-lodging)"></span>住宿</span>
+  </div>
+
+  <div id="map"></div>
+</div>
+
+<script>
+  var CAT_COLORS = {
+    "景點": "#eda100",
+    "活動": "#008300",
+    "購物": "#1baf7a",
+    "住宿": "#e87ba4"
+  };
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    CAT_COLORS = { "景點": "#c98500", "活動": "#008300", "購物": "#199e70", "住宿": "#d55181" };
+  }
+
+  var places = [
+    { name: "瀧野鈴蘭丘陵公園", cat: "活動", note: "雪上泡泡", priority: "想去", lat: 42.91572, lng: 141.38268 },
+    { name: "北海道農學校", cat: "景點", note: "跟北海道大學是同一天早上的候選（擇一）", priority: "想去", lat: 43.08204, lng: 141.33999 },
+    { name: "北海道大學", cat: "景點", note: "跟北海道農學校是同一天早上的候選（擇一）", priority: "想去", lat: 43.07796, lng: 141.34001 },
+    { name: "小樽（運河）", cat: "景點", note: "", priority: "想去", lat: 43.19886, lng: 141.00210 },
+    { name: "美瑛 青池", cat: "景點", note: "", priority: "想去", lat: 43.49358, lng: 142.61403 },
+    { name: "美瑛 聖誕樹", cat: "景點", note: "クリスマスツリーの木", priority: "想去", lat: 43.55437, lng: 142.44427 },
+    { name: "精靈露台（ニングルテラス）", cat: "景點", note: "富良野", priority: "想去", lat: 43.32284, lng: 142.35589 },
+    { name: "北海道神宮", cat: "景點", note: "", priority: "想去", lat: 43.05424, lng: 141.30771 },
+    { name: "旭川動物園", cat: "景點", note: "可以不去", priority: "有空再去", lat: 43.76805, lng: 142.47978 },
+    { name: "StellarPlace", cat: "購物", note: "札幌車站逛街", priority: "想去", lat: 43.06813, lng: 141.35253 },
+    { name: "狸小路 Parco", cat: "購物", note: "", priority: "想去", lat: 43.05869, lng: 141.35319 },
+    { name: "札幌工廠（Sapporo Factory）", cat: "購物", note: "🔥 標記", priority: "想去", lat: 43.06556, lng: 141.36306 },
+    { name: "apia lowrys farm", cat: "購物", note: "APIA 地下街，跟 StellarPlace 同一棟", priority: "想去", lat: 43.06813, lng: 141.35253 },
+    { name: "Sapporo Stream Hotel", cat: "住宿", note: "全程住宿，12/17–12/24", priority: "必去", lat: 43.0555, lng: 141.354 }
+  ];
+
+  var map = L.map('map', { scrollWheelZoom: true });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  var markers = [];
+  places.forEach(function (p) {
+    var color = CAT_COLORS[p.cat] || "#888888";
+    var marker = L.circleMarker([p.lat, p.lng], {
+      radius: p.cat === "住宿" ? 9 : 7,
+      color: color,
+      fillColor: color,
+      fillOpacity: 0.85,
+      weight: 2
+    }).addTo(map);
+    var html = '<div class="popup-title">' + p.name + '</div>' +
+      '<div class="popup-meta">' + p.cat + ' ・ ' + p.priority + '</div>' +
+      (p.note ? '<div class="popup-note">' + p.note + '</div>' : '');
+    marker.bindPopup(html);
+    markers.push(marker);
+  });
+
+  var group = L.featureGroup(markers);
+  map.fitBounds(group.getBounds().pad(0.15));
+</script>
+</body>
+</html>

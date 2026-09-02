@@ -9,25 +9,29 @@ This repo plans Carter and Rola's December 2026 trip to Hokkaido. It has no buil
 ## Structure and data flow
 
 ```
-interests/carter.md, interests/rola.md   individual lists of places each person wants to go, with notes
-interests/shared.md                      places both Carter and Rola want to go
+interests/carter.md, interests/rola.md   individual lists of places each person wants to go, with notes + coordinates
+interests/shared.md                      places both Carter and Rola want to go, with notes + coordinates
+        │                     │
+        ▼                     ▼
+itinerary/logistics.md    web/map.html   pin map generated FROM the 座標 (coordinates) columns above + hotel coordinate
+(fixed constraints: dates,
+flights, lodging, transport)
         │
         ▼
-itinerary/logistics.md                   fixed constraints: dates, flights, lodging, transport (not places-of-interest)
 itinerary/outline.md                     draft day-by-day skeleton (which day, which area, no timing yet)
         │
         ▼
 itinerary/detailed.md                    full itinerary: per-day tables with time / place / notes / transport
         │
         ▼
-web/index.html                           responsive static page (mobile + desktop) generated FROM detailed.md
+web/index.html                           responsive day-board (mobile + desktop), currently generated FROM outline.md
 ```
 
 Each file links to its neighbors in the pipeline — follow those links to see what feeds what.
 
 ## Key workflow rule
 
-`web/index.html` is generated output, not hand-edited. When `itinerary/detailed.md` changes and the user asks to update the webpage, regenerate `web/index.html` from it (self-contained HTML/CSS, no build step, responsive layout that works well on both mobile and desktop). Do not maintain the webpage's content by hand — it should always be a straight rendering of `detailed.md`.
+Everything in `web/` is generated output, not hand-edited. `web/index.html` currently renders `itinerary/outline.md` (self-contained HTML/CSS, no build step, responsive layout for mobile and desktop) — once `itinerary/detailed.md` has real content, switch the source to that instead. `web/map.html` renders the 座標 (coordinates) column in `interests/*.md` plus the hotel coordinate in `itinerary/logistics.md`. When any of those source files change and the user asks to update the page(s), regenerate — don't hand-maintain content in `web/`, it should always be a straight rendering of its source.
 
 ## Editing itinerary/detailed.md
 
@@ -40,3 +44,7 @@ Currently a horizontally-scrollable day-board: one column per day (uniform heade
 - 交通 (transport), 美食 (food), 購物 (shopping), 景點 (sightseeing), 住宿 (lodging), 活動 (activity)
 
 Category colors come from the `dataviz` skill's validated categorical palette (slots 1–6, in that fixed order) — reuse the same hex values and re-run `scripts/validate_palette.js` if the set of categories ever changes.
+
+## web/map.html conventions
+
+A Leaflet + OpenStreetMap page (CDN, not vendored) plotting every place in `interests/*.md` that has a 座標 value, plus the hotel from `itinerary/logistics.md`. Marker color reuses the 景點/活動/購物/住宿 categories and hex values from `web/index.html`'s taxonomy (交通/美食 unused here so far — add them if flight/food pins are ever added). Places with 座標 = 待定 are listed in a text callout instead of a pin, not silently dropped. When `interests/*.md` coordinates change, regenerate this file's inline `places` array to match.
