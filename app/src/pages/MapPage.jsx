@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { places, CAT_COLORS_LIGHT, CAT_COLORS_DARK } from "../data/places";
@@ -65,9 +66,9 @@ export default function MapPage() {
         <p>Carter &amp; Rola</p>
         <span className="draft-badge">草稿版・資料來源：interests/shared.md、itinerary/logistics.md</span>
         <p style={{ marginTop: "0.5rem" }}>
-          <a href="/" style={{ color: "var(--accent)" }}>
+          <Link to="/" style={{ color: "var(--accent)" }}>
             ← 看行程看板
-          </a>
+          </Link>
         </p>
       </header>
 
