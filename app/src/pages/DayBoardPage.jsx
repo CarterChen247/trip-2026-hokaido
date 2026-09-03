@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import Nav from "../components/Nav";
 import { trip, CATEGORIES, SLOTS, days } from "../data/itinerary";
 import "./DayBoardPage.css";
 
@@ -10,15 +10,11 @@ function scheduledCount(day) {
 export default function DayBoardPage() {
   return (
     <div className="board-wrap">
+      <Nav />
       <header className="hero">
         <h1>{trip.title}</h1>
         <p>Carter &amp; Rola</p>
         <span className="draft-badge">草稿版・資料來源：itinerary/outline.md</span>
-        <p style={{ marginTop: "0.5rem" }}>
-          <Link to="/map" style={{ color: "var(--accent)" }}>
-            看地點地圖 →
-          </Link>
-        </p>
       </header>
 
       <div className="info-row-wrap">

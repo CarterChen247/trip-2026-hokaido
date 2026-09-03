@@ -1,0 +1,26 @@
+.app-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0 0;
+}
+
+.app-nav-link {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.app-nav-link:hover {
+  color: var(--accent);
+}
+
+.app-nav-link.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+}

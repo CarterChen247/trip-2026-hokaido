@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import Nav from "../components/Nav";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { places, CAT_COLORS_LIGHT, CAT_COLORS_DARK } from "../data/places";
@@ -61,15 +61,11 @@ export default function MapPage() {
 
   return (
     <div className="map-wrap">
+      <Nav />
       <header className="hero">
         <h1>北海道 2026/12 地點地圖</h1>
         <p>Carter &amp; Rola</p>
         <span className="draft-badge">草稿版・資料來源：interests/shared.md、itinerary/logistics.md</span>
-        <p style={{ marginTop: "0.5rem" }}>
-          <Link to="/" style={{ color: "var(--accent)" }}>
-            ← 看行程看板
-          </Link>
-        </p>
       </header>
 
       <div className="legend">
