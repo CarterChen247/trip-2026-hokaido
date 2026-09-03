@@ -48,3 +48,17 @@ Category colors come from the `dataviz` skill's validated categorical palette (s
 ## web/map.html conventions
 
 A Leaflet + OpenStreetMap page (CDN, not vendored) plotting every place in `interests/*.md` that has a 座標 value, plus the hotel from `itinerary/logistics.md`. Marker color reuses the 景點/活動/購物/住宿 categories and hex values from `web/index.html`'s taxonomy (交通/美食 unused here so far — add them if flight/food pins are ever added). Places with 座標 = 待定 are listed in a text callout instead of a pin, not silently dropped. When `interests/*.md` coordinates change, regenerate this file's inline `places` array to match.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live as GitHub issues on this repo (`CarterChen247/trip-2026-hokaido`), managed via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default five-role vocabulary (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`), used as-is. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
