@@ -4,7 +4,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Purpose
 
-This repo plans Carter and Rola's December 2026 trip to Hokkaido. It has no build system, no tests, and no application code — it's markdown data plus one generated static webpage.
+This repo plans Carter and Rola's December 2026 trip to Hokkaido. The source of truth is markdown data (interests, itinerary, logistics). There are two rendered outputs built from that data:
+
+- `web/` — a hand-generated static HTML/CSS export (legacy, no build step). See "Structure and data flow" below.
+- `app/` — the active React + Vite application (see "Development (app/)" below). This is where new feature work happens.
+
+## Development (app/)
+
+`app/` is a Vite + React app (React Router, no TypeScript, Oxlint for linting). To run it:
+
+```
+cd app && npm run dev   # http://localhost:5173
+```
+
+"Open the dev server" for this repo means this Vite dev server — not a static file server over `web/*.html`. Other scripts: `npm run build`, `npm run lint`, `npm run preview`.
+
+Pages live in `app/src/pages/` (day board, map, interests, logistics, packing, sync) with data adapters in `app/src/data/` and the local device-sync engine (export/import/QR/paste, diff + conflict resolution) in `app/src/sync/`.
 
 ## Structure and data flow
 
@@ -48,6 +63,12 @@ Category colors come from the `dataviz` skill's validated categorical palette (s
 ## web/map.html conventions
 
 A Leaflet + OpenStreetMap page (CDN, not vendored) plotting every place in `interests/*.md` that has a 座標 value, plus the hotel from `itinerary/logistics.md`. Marker color reuses the 景點/活動/購物/住宿 categories and hex values from `web/index.html`'s taxonomy (交通/美食 unused here so far — add them if flight/food pins are ever added). Places with 座標 = 待定 are listed in a text callout instead of a pin, not silently dropped. When `interests/*.md` coordinates change, regenerate this file's inline `places` array to match.
+
+## Git workflow
+
+This repo never uses a PR workflow. Land work with a short-lived branch fast-forward-merged straight to `main`, or commit directly to `main` — never `gh pr create`. This is a two-person personal trip-planning repo with no reviewer on the other end, so a PR only adds ceremony.
+
+Pattern: `git checkout -b feat/<issue#>-<slug>` → implement with per-section commits → `git checkout main && git merge --ff-only <branch> && git branch -d <branch>` → `git push origin main` → close the GitHub issue with a comment summarizing what shipped. A short-lived branch is still fine for isolation; just don't open a PR for it. This applies even when a general-purpose skill (e.g. `new-feature`) defaults to a branch → PR → review flow — skip the PR step.
 
 ## Agent skills
 
