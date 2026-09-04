@@ -1,0 +1,134 @@
+.interests-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: var(--sp-5) var(--sp-4) var(--sp-7);
+}
+
+.hero {
+  padding-bottom: var(--sp-6);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--sp-6);
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--sp-3);
+}
+.hero h1 {
+  margin: 0 0 var(--sp-2);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.hero p.sub {
+  margin: 0;
+  color: var(--slate);
+  font-size: 0.95rem;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  align-items: center;
+  padding: var(--sp-3) var(--sp-4);
+  margin-bottom: var(--sp-4);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.filter-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-right: var(--sp-1);
+}
+.chip {
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--slate);
+  cursor: pointer;
+}
+.chip.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.chip.clear {
+  margin-left: auto;
+  color: var(--slate);
+  border-style: dashed;
+}
+
+.result-count {
+  color: var(--slate);
+  font-size: 0.82rem;
+  margin: 0 0 var(--sp-4);
+}
+
+.place-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--sp-4);
+}
+.place-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--sp-4);
+}
+.place-card h2 {
+  margin: 0 0 var(--sp-2);
+  font-size: 1rem;
+  font-weight: 700;
+}
+.place-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-2);
+}
+.place-meta .tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 6px;
+  padding: 0.1rem 0.5rem;
+}
+.place-meta .priority {
+  font-size: 0.72rem;
+  color: var(--slate);
+}
+.place-card .note {
+  margin: 0;
+  color: var(--slate);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.empty-note {
+  color: var(--slate);
+  font-size: 0.85rem;
+}

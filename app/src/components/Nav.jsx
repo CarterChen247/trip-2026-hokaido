@@ -4,6 +4,7 @@ import "./Nav.css";
 const LINKS = [
   { to: "/", label: "行程看板" },
   { to: "/map", label: "地點地圖" },
+  { to: "/interests", label: "興趣清單" },
 ];
 
 export default function Nav() {
