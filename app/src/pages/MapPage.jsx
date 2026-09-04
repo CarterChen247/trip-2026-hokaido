@@ -63,9 +63,9 @@ export default function MapPage() {
     <div className="map-wrap">
       <Nav />
       <header className="hero">
-        <h1>北海道 2026/12 地點地圖</h1>
-        <p>Carter &amp; Rola</p>
-        <span className="draft-badge">草稿版・資料來源：interests/shared.md、itinerary/logistics.md</span>
+        <span className="eyebrow">草稿版・資料來源：interests/shared.md、itinerary/logistics.md</span>
+        <h1>北海道 地點地圖</h1>
+        <p className="sub">Carter &amp; Rola</p>
       </header>
 
       <div className="legend">

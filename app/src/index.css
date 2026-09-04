@@ -1,5 +1,51 @@
 :root {
+  --bg: #eef2f4;
+  --surface: #ffffff;
+  --ink: #161b22;
+  --slate: #5b6b74;
+  --line: #dbe2e6;
+  --accent: #2f5d8a;
+  --accent-soft: #e3ecf3;
+
+  --cat-transport: #2a78d6;
+  --cat-food: #eb6834;
+  --cat-shopping: #1baf7a;
+  --cat-sight: #eda100;
+  --cat-lodging: #e87ba4;
+  --cat-activity: #008300;
+
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
   color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #10151a;
+    --surface: #1a2126;
+    --ink: #e9eef1;
+    --slate: #8b98a1;
+    --line: #2a333a;
+    --accent: #7fa8cc;
+    --accent-soft: #1c2a35;
+
+    --cat-transport: #3987e5;
+    --cat-food: #d95926;
+    --cat-shopping: #199e70;
+    --cat-sight: #c98500;
+    --cat-lodging: #d55181;
+    --cat-activity: #008300;
+  }
 }
 
 * {
@@ -14,6 +60,15 @@ body,
 }
 
 body {
+  background: var(--bg);
+  color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Segoe UI", sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: 0.02em;
 }

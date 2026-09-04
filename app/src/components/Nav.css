@@ -1,16 +1,15 @@
 .app-nav {
   display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.6rem 0 0;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-5);
 }
 
 .app-nav-link {
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--radius-pill);
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--muted);
+  color: var(--slate);
   text-decoration: none;
   border: 1px solid transparent;
 }

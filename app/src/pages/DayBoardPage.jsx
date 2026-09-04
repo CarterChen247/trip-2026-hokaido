@@ -12,9 +12,11 @@ export default function DayBoardPage() {
     <div className="board-wrap">
       <Nav />
       <header className="hero">
-        <h1>{trip.title}</h1>
-        <p>Carter &amp; Rola</p>
-        <span className="draft-badge">草稿版・資料來源：itinerary/outline.md</span>
+        <span className="eyebrow">草稿版・資料來源：itinerary/outline.md</span>
+        <h1>
+          {trip.name} <span className="num">{trip.dateRange}</span>
+        </h1>
+        <p className="sub">Carter &amp; Rola</p>
       </header>
 
       <div className="info-row-wrap">
@@ -23,7 +25,7 @@ export default function DayBoardPage() {
           {trip.flights.map((f) => (
             <div className="info-line" key={f.label}>
               <span>{f.label}</span>
-              <span>{f.value}</span>
+              <span className="num">{f.value}</span>
             </div>
           ))}
         </section>
@@ -32,7 +34,7 @@ export default function DayBoardPage() {
           {trip.hotel.map((h) => (
             <div className="info-line" key={h.label}>
               <span>{h.label}</span>
-              <span>{h.value}</span>
+              <span className="num">{h.value}</span>
             </div>
           ))}
         </section>
@@ -52,9 +54,9 @@ export default function DayBoardPage() {
           {days.map((day) => (
             <div className="day-header" key={day.num}>
               <span className="day-badge">
-                <span className="day-num">{day.num}</span>
-                <span className="day-date">{day.date}</span>
-                <span className="count">{scheduledCount(day)}</span>
+                <span className="day-num num">{day.num}</span>
+                <span className="day-date num">{day.date}</span>
+                <span className="count num">{scheduledCount(day)}</span>
               </span>
               <div className="day-theme">{day.theme}</div>
             </div>
@@ -74,7 +76,7 @@ export default function DayBoardPage() {
                     day.groups[slot].map((item, i) => (
                       <div className={`item-card${item.cat ? ` cat-${item.cat}` : ""}`} key={i}>
                         {item.text}
-                        {item.sub && <div className="sub">{item.sub}</div>}
+                        {item.sub && <div className="sub num">{item.sub}</div>}
                       </div>
                     ))
                   )}

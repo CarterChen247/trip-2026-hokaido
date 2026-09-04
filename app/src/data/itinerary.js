@@ -2,7 +2,8 @@
 // When outline.md (or later detailed.md) changes, regenerate this to match.
 
 export const trip = {
-  title: "北海道 2026/12/17 – 12/24",
+  name: "北海道",
+  dateRange: "2026/12/17 – 12/24",
   flights: [
     { label: "去程 12/17 (四)", value: "TPE 09:30 → CTS 14:05" },
     { label: "回程 12/24 (四)", value: "CTS 15:20 → TPE 19:05" },
