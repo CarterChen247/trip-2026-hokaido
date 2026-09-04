@@ -32,15 +32,15 @@ export const days = [
     theme: "薄野",
     groups: {
       早: [
-        { cat: "transport", text: "🚌 台灣時間 6:00 前往機場" },
-        { cat: "transport", text: "🛫 搭機", sub: "TPE 09:30 → CTS 14:05" },
+        { id: "d1-morning-1", cat: "transport", text: "🚌 台灣時間 6:00 前往機場" },
+        { id: "d1-morning-2", cat: "transport", text: "🛫 搭機", sub: "TPE 09:30 → CTS 14:05" },
       ],
-      午: [{ cat: "lodging", text: "🏨 抵達後前往飯店", sub: "15:00 後 check-in" }],
+      午: [{ id: "d1-noon-1", cat: "lodging", text: "🏨 抵達後前往飯店", sub: "15:00 後 check-in" }],
       晚: [
-        { cat: "shopping", text: "🧢 狸小路商店街補裝備" },
-        { cat: "food", text: "🍽️ 貍小路吃飯" },
+        { id: "d1-night-1", cat: "shopping", text: "🧢 狸小路商店街補裝備" },
+        { id: "d1-night-2", cat: "food", text: "🍽️ 貍小路吃飯" },
       ],
-      TBD: [{ cat: "shopping", text: "🛍️ 逛街候補", sub: "StellarPlace、狸小路 Parco、札幌工廠" }],
+      TBD: [{ id: "d1-tbd-1", cat: "shopping", text: "🛍️ 逛街候補", sub: "StellarPlace、狸小路 Parco、札幌工廠" }],
     },
   },
   {
@@ -48,12 +48,12 @@ export const days = [
     date: "12/18 五",
     theme: "札幌逛街",
     groups: {
-      早: [{ cat: "sight", text: "🏫 北海道大學／北海道農學校", sub: "擇一，待選" }],
+      早: [{ id: "d2-morning-1", cat: "sight", text: "🏫 北海道大學／北海道農學校", sub: "擇一，待選" }],
       午: [
-        { cat: "shopping", text: "🛍️ Stellaplace 逛街" },
-        { cat: "shopping", text: "🛍️ apia lowrys farm" },
+        { id: "d2-noon-1", cat: "shopping", text: "🛍️ Stellaplace 逛街" },
+        { id: "d2-noon-2", cat: "shopping", text: "🛍️ apia lowrys farm" },
       ],
-      晚: [{ cat: "shopping", text: "🏮 貍小路商店街" }],
+      晚: [{ id: "d2-night-1", cat: "shopping", text: "🏮 貍小路商店街" }],
       TBD: [],
     },
   },
@@ -63,7 +63,7 @@ export const days = [
     theme: "小樽",
     groups: {
       早: [],
-      午: [{ cat: "sight", text: "🚋 小樽", sub: "細節待排" }],
+      午: [{ id: "d3-noon-1", cat: "sight", text: "🚋 小樽", sub: "細節待排" }],
       晚: [],
       TBD: [],
     },
@@ -73,9 +73,9 @@ export const days = [
     date: "12/20 日",
     theme: "北海道神宮",
     groups: {
-      早: [{ cat: "sight", text: "🌳 大通公園" }],
-      午: [{ cat: "sight", text: "⛩️ 北海道神宮", sub: "1–2 hr" }],
-      晚: [{ cat: null, text: "❓ 待定" }],
+      早: [{ id: "d4-morning-1", cat: "sight", text: "🌳 大通公園" }],
+      午: [{ id: "d4-noon-1", cat: "sight", text: "⛩️ 北海道神宮", sub: "1–2 hr" }],
+      晚: [{ id: "d4-night-1", cat: null, text: "❓ 待定" }],
       TBD: [],
     },
   },
@@ -103,8 +103,8 @@ export const days = [
     theme: "回程",
     groups: {
       早: [],
-      午: [{ cat: "lodging", text: "🧳 Check-out", sub: "11:00" }],
-      晚: [{ cat: "transport", text: "🛫 搭機回程", sub: "CTS 15:20 → TPE 19:05" }],
+      午: [{ id: "d8-noon-1", cat: "lodging", text: "🧳 Check-out", sub: "11:00" }],
+      晚: [{ id: "d8-night-1", cat: "transport", text: "🛫 搭機回程", sub: "CTS 15:20 → TPE 19:05" }],
       TBD: [],
     },
   },
