@@ -6,6 +6,7 @@ const LINKS = [
   { to: "/map", label: "地點地圖" },
   { to: "/interests", label: "興趣清單" },
   { to: "/logistics", label: "航班/交通/住宿" },
+  { to: "/packing", label: "打包清單" },
 ];
 
 export default function Nav() {

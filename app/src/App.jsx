@@ -3,6 +3,7 @@ import DayBoardPage from "./pages/DayBoardPage";
 import MapPage from "./pages/MapPage";
 import InterestsPage from "./pages/InterestsPage";
 import LogisticsPage from "./pages/LogisticsPage";
+import PackingPage from "./pages/PackingPage";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/map" element={<MapPage />} />
         <Route path="/interests" element={<InterestsPage />} />
         <Route path="/logistics" element={<LogisticsPage />} />
+        <Route path="/packing" element={<PackingPage />} />
       </Routes>
     </BrowserRouter>
   );
