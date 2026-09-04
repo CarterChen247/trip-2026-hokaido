@@ -1,9 +1,11 @@
 ---
-status: accepted
+status: superseded
 ---
 
 # Firebase（Auth + Firestore + Hosting）作為共享狀態與部署平台，用 Google 登入限制存取
 
+> **Superseded by [[0007-local-sync-supersedes-firebase]]**：共享狀態層改用裝置端手動同步（匯出/匯入檔 + 雲端硬碟 + QR），不再用 Firebase。本文保留作為歷史紀錄。
+>
 > 範圍已由 [[0006-zero-backend-core-optional-sharing-layer]] 收斂：這裡描述的機制仍然是共享狀態層要用的做法，但這一整層現在是**可選加值功能**，不是專案的必要條件。核心的行程表 + checklist 不依賴這裡任何東西。
 
 部分功能（打包清單勾選、行程進度標記、途中共享清單）需要在 Carter 與 Rola 兩人裝置間共享狀態；同時旅遊日期/地點一旦外流有實體安全疑慮（等於公開「這幾天不在家」），所以需要真正的存取控制，不能只靠網址難猜。

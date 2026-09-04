@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import DayBoardPage from "./pages/DayBoardPage";
 import MapPage from "./pages/MapPage";
 import InterestsPage from "./pages/InterestsPage";
@@ -7,7 +7,7 @@ import PackingPage from "./pages/PackingPage";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<DayBoardPage />} />
         <Route path="/map" element={<MapPage />} />
@@ -15,6 +15,6 @@ export default function App() {
         <Route path="/logistics" element={<LogisticsPage />} />
         <Route path="/packing" element={<PackingPage />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

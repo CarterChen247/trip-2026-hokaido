@@ -1,9 +1,11 @@
 ---
-status: accepted
+status: superseded
 ---
 
 # Markdown 維持靜態內容的唯一 SSOT；互動產生的狀態一律存 Firestore，不寫回 markdown
 
+> **Superseded by [[0007-local-sync-supersedes-firebase]]**：互動狀態的落地方式改成本機 JSON（localStorage + 匯出檔），不再用 Firestore；「markdown 是靜態內容唯一 SSOT」這個切分本身沿用不變。本文保留作為歷史紀錄。
+>
 > 範圍已由 [[0006-zero-backend-core-optional-sharing-layer]] 收斂：這裡描述的是「共享狀態層」啟用時的資料模型。核心層（零後端）的 checklist/行程進度預設存 localStorage，不涉及 Firestore；只有使用者主動開啟共享狀態層時，才會照這份 ADR 的方式用 Firestore 疊加。
 
 新增的互動功能（[[CONTEXT#打包清單-packing-list]]勾選、[[CONTEXT#行程進度-itinerary-progress]]標記、[[CONTEXT#共享清單-shared-list]]、未來的自訂[[CONTEXT#標籤-label]]）都會產生「使用中生成」的狀態。決定這些狀態一律以 Firestore 文件的形式，用穩定的 item id 關聯回 markdown 來源資料，而不是讓網頁寫回 `interests/*.md`、`itinerary/*.md` 等檔案。
