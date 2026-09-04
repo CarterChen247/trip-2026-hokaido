@@ -39,7 +39,7 @@ export default function PackingPage() {
         <span className="eyebrow">草稿版・資料來源：itinerary/packing.md</span>
         <h1>打包清單</h1>
         <p className="sub num">
-          {done} / {total} 已打包 ・ 存在這台裝置，不會跨裝置同步
+          {done} / {total} 已打包 ・ 存在這台裝置，到「同步」頁面可以跟對方交換進度
         </p>
       </header>
 
