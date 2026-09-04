@@ -21,5 +21,9 @@ _Avoid_: progress tracker, status
 _Avoid_: dynamic list
 
 **標籤 (Label)**:
-興趣清單/物流資訊卡上用來篩選的分類標記。v1 是 markdown 資料的一部分、唯讀；未來可能開放使用者自訂與編輯（屆時會疊加一份獨立的 Firestore collection，不寫回 markdown）。
+興趣清單/航班交通住宿頁上用來篩選的分類標記。v1 是 markdown 資料的一部分、唯讀；未來可能開放使用者自訂與編輯（屆時會疊加一份獨立的 Firestore collection，不寫回 markdown）。
 _Avoid_: tag, category
+
+**航班/交通/住宿 (Flights/Transport/Lodging)**:
+`itinerary/logistics.md` 的內容——已經確定、會限制行程排法的資訊（航班、住宿、市內交通、其他雜項）。使用者面文案直接列出內容分類，不用抽象詞概括。內部檔名/路徑仍可用 logistics（英文）。唯讀渲染，不涉及互動狀態。
+_Avoid_: 物流（太像貨運倉儲）、固定資訊（太抽象，使用者反應「聽起來很怪」）、logistics（面向使用者時不要用英文）

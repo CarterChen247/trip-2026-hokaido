@@ -1,0 +1,96 @@
+.logistics-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: var(--sp-5) var(--sp-4) var(--sp-7);
+}
+
+.hero {
+  padding-bottom: var(--sp-6);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--sp-6);
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--sp-3);
+}
+.hero h1 {
+  margin: 0 0 var(--sp-2);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.hero p.sub {
+  margin: 0;
+  color: var(--slate);
+  font-size: 0.95rem;
+}
+
+.section {
+  margin-bottom: var(--sp-6);
+}
+.section h2 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin: 0 0 var(--sp-3);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-4);
+}
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--sp-4) var(--sp-5);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.card-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: var(--sp-3);
+}
+.info-line {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  font-size: 0.85rem;
+  padding: var(--sp-1) 0;
+}
+.info-line span:first-child {
+  color: var(--slate);
+}
+.info-line span:last-child {
+  font-weight: 600;
+  text-align: right;
+}
+.info-card .note {
+  margin: var(--sp-3) 0 0;
+  padding-top: var(--sp-3);
+  border-top: 1px dashed var(--line);
+  color: var(--slate);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.plain-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.88rem;
+}
+.plain-list li {
+  padding: var(--sp-1) 0;
+}
