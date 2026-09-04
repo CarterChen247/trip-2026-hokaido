@@ -16,6 +16,20 @@ function formatForFilename(ts) {
   return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}`;
 }
 
+// `item` is a bare id string for boolean-set slices, or a full { id, text, removed }
+// record for timestamped-list slices (which carry their own label, no registry lookup needed).
+function getAddedLabel(slice, item) {
+  if (typeof item === "string") {
+    return slice.getItemLabel ? slice.getItemLabel(item) : item;
+  }
+  return item.text ?? item.id;
+}
+
+function describeConflictSide(record) {
+  if (!record) return "（這邊沒有這個項目）";
+  return `${record.text}（${record.removed ? "已標記完成" : "尚未完成"}）`;
+}
+
 export default function SyncPage() {
   const [stage, setStage] = useState("idle"); // idle | previewing | applied | error
   const [mergePlan, setMergePlan] = useState(null);
@@ -146,8 +160,7 @@ export default function SyncPage() {
                     <ul className="sync-diff-list">
                       {result.added.map((item) => {
                         const id = typeof item === "string" ? item : item.id;
-                        const label = slice.getItemLabel ? slice.getItemLabel(id) : id;
-                        return <li key={id}>{label}</li>;
+                        return <li key={id}>{getAddedLabel(slice, item)}</li>;
                       })}
                     </ul>
                   </>
@@ -163,7 +176,6 @@ export default function SyncPage() {
                         const choice = resolutions[slice.key]?.[conflict.id];
                         return (
                           <li key={conflict.id} className="sync-conflict-item">
-                            <p className="conflict-id">{conflict.id}</p>
                             <label>
                               <input
                                 type="radio"
@@ -171,7 +183,7 @@ export default function SyncPage() {
                                 checked={choice === "local"}
                                 onChange={() => setResolution(slice.key, conflict.id, "local")}
                               />
-                              採用我的版本
+                              採用我的版本：{describeConflictSide(conflict.local)}
                             </label>
                             <label>
                               <input
@@ -180,7 +192,7 @@ export default function SyncPage() {
                                 checked={choice === "remote"}
                                 onChange={() => setResolution(slice.key, conflict.id, "remote")}
                               />
-                              採用對方的版本
+                              採用對方的版本：{describeConflictSide(conflict.remote)}
                             </label>
                           </li>
                         );

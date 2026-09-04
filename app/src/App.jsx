@@ -4,6 +4,7 @@ import MapPage from "./pages/MapPage";
 import InterestsPage from "./pages/InterestsPage";
 import LogisticsPage from "./pages/LogisticsPage";
 import PackingPage from "./pages/PackingPage";
+import SharedListPage from "./pages/SharedListPage";
 import SyncPage from "./pages/SyncPage";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/interests" element={<InterestsPage />} />
         <Route path="/logistics" element={<LogisticsPage />} />
         <Route path="/packing" element={<PackingPage />} />
+        <Route path="/shared-list" element={<SharedListPage />} />
         <Route path="/sync" element={<SyncPage />} />
       </Routes>
     </HashRouter>

@@ -29,6 +29,12 @@ export const SYNC_SLICES = [
     storageKey: "itinerary-done-v1",
     getItemLabel: (id) => itineraryItemsById.get(id)?.text ?? id,
   },
+  {
+    key: "shared-list",
+    label: "共享清單",
+    type: "timestamped-list",
+    storageKey: "shared-list-v1",
+  },
 ];
 
 export function readSliceData(slice) {

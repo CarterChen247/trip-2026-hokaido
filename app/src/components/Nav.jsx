@@ -7,6 +7,7 @@ const LINKS = [
   { to: "/interests", label: "興趣清單" },
   { to: "/logistics", label: "航班/交通/住宿" },
   { to: "/packing", label: "打包清單" },
+  { to: "/shared-list", label: "共享清單" },
   { to: "/sync", label: "同步" },
 ];
 
