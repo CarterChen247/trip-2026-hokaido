@@ -1,13 +1,42 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Nav from "../components/Nav";
 import { trip, CATEGORIES, SLOTS, days } from "../data/itinerary";
 import "./DayBoardPage.css";
+
+const STORAGE_KEY = "itinerary-done-v1";
+
+function loadDone() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? new Set(JSON.parse(raw)) : new Set();
+  } catch {
+    return new Set();
+  }
+}
 
 function scheduledCount(day) {
   return day.groups["早"].length + day.groups["午"].length + day.groups["晚"].length;
 }
 
 export default function DayBoardPage() {
+  const [done, setDone] = useState(loadDone);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...done]));
+  }, [done]);
+
+  function toggleDone(id) {
+    setDone((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  }
+
   return (
     <div className="board-wrap">
       <Nav />
@@ -73,8 +102,21 @@ export default function DayBoardPage() {
                   {day.groups[slot].length === 0 ? (
                     <div className="empty-slot">尚未安排</div>
                   ) : (
-                    day.groups[slot].map((item, i) => (
-                      <div className={`item-card${item.cat ? ` cat-${item.cat}` : ""}`} key={i}>
+                    day.groups[slot].map((item) => (
+                      <div
+                        className={`item-card${item.cat ? ` cat-${item.cat}` : ""}${done.has(item.id) ? " done" : ""}`}
+                        key={item.id}
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => toggleDone(item.id)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            toggleDone(item.id);
+                          }
+                        }}
+                      >
+                        <span className="done-mark">{done.has(item.id) ? "✅" : "☐"}</span>
                         {item.text}
                         {item.sub && <div className="sub num">{item.sub}</div>}
                       </div>

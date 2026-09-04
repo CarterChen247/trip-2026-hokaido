@@ -207,6 +207,20 @@
   font-size: 0.76rem;
   margin-top: var(--sp-1);
 }
+.item-card {
+  cursor: pointer;
+}
+.item-card .done-mark {
+  margin-right: var(--sp-2);
+}
+.item-card.done {
+  border-left-color: var(--line);
+  color: var(--slate);
+  text-decoration: line-through;
+}
+.item-card.done .sub {
+  text-decoration: line-through;
+}
 .empty-slot {
   border: 1px dashed var(--line);
   border-radius: var(--radius-sm);

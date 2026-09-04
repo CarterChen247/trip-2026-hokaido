@@ -8,6 +8,11 @@
 //       an id edited/removed differently on both sides is a conflict routed to
 //       manual resolution — see mergeTimestampedList in merge.js.
 import { packingItems } from "../data/packing";
+import { days } from "../data/itinerary";
+
+const itineraryItemsById = new Map(
+  days.flatMap((day) => Object.values(day.groups).flat()).map((item) => [item.id, item])
+);
 
 export const SYNC_SLICES = [
   {
@@ -16,6 +21,13 @@ export const SYNC_SLICES = [
     type: "boolean-set",
     storageKey: "packing-checked-v1",
     getItemLabel: (id) => packingItems.find((item) => item.id === id)?.name ?? id,
+  },
+  {
+    key: "itinerary-done",
+    label: "行程完成標記",
+    type: "boolean-set",
+    storageKey: "itinerary-done-v1",
+    getItemLabel: (id) => itineraryItemsById.get(id)?.text ?? id,
   },
 ];
 
